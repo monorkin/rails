@@ -1,3 +1,13 @@
+*   Fix has_many through association with source_type loading records of the wrong type
+
+    Previously, defining a `has_many` relationship with a `source_type` would
+    use the namespace of the model the association is defined on when converting
+    `source_type` to a class which could return objects of an unexpected class.
+
+    Now, class names in `source_type` are treated as absolute class names.
+
+    *Stanko Krtalic Rusendic*
+
 *   Stop using `LOWER()` for case-insensitive queries on `citext` columns
 
     Previously, `LOWER()` was added for e.g. uniqueness validations with

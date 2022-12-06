@@ -1,0 +1,9 @@
+johns_washing_machine_favorite:
+  user_id: 1
+  favorable_id: 1
+  favorable_type: Device
+
+johns_vacuum_cleaner_favorite:
+  user_id: 1
+  favorable_id: 2
+  favorable_type: Device

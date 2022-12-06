@@ -314,6 +314,11 @@ ActiveRecord::Schema.define do
     t.integer :content_id
   end
 
+  create_table :devices, force: true do |t|
+    t.string :name
+    t.timestamps null: true
+  end
+
   create_table :vegetables, force: true do |t|
     t.string :name
     t.integer :seller_id
@@ -1324,6 +1329,19 @@ ActiveRecord::Schema.define do
     t.string :auth_token
     t.string :password_digest
     t.string :recovery_password_digest
+    t.timestamps null: true
+  end
+
+  create_table :user_devices, force: true do |t|
+    t.references :user, null: false, index: true
+    t.string :token
+    t.string :locale
+    t.timestamps null: true
+  end
+
+  create_table :user_favorites, force: true do |t|
+    t.references :user, null: false, index: true
+    t.references :favorable, polymorphic: true, null: false
     t.timestamps null: true
   end
 

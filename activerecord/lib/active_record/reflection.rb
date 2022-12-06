@@ -1020,7 +1020,9 @@ module ActiveRecord
 
         def derive_class_name
           # get the class_name of the belongs_to association of the through reflection
-          options[:source_type] || source_reflection.class_name
+          return "::#{options[:source_type]}" if options.key?(:source_type)
+
+          source_reflection.class_name
         end
 
         delegate_methods = AssociationReflection.public_instance_methods -

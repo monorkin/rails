@@ -18,6 +18,15 @@ class User < ActiveRecord::Base
   has_one :family_tree, -> { where(token: nil) }, foreign_key: "member_id"
   has_one :family, through: :family_tree
   has_many :family_members, through: :family, source: :members
+
+  has_many :devices,
+           class_name: "User::Device"
+  has_many :favorites,
+           class_name: "User::Favorite"
+  has_many :favorite_devices,
+           through: :favorites,
+           source: :favorable,
+           source_type: "Device"
 end
 
 class UserWithNotification < User
